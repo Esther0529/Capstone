@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Kulai Sport</title>
+  <style>
+    body {
+      background: #fafafa;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .product-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 32px 0 32px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      flex-wrap: wrap;
+    }
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .toolbar-label {
+      font-size: 1.05rem;
+      color: #222;
+      font-weight: 500;
+      margin-right: 8px;
+    }
+    .toolbar-select {
+      font-size: 1rem;
+      padding: 6px 18px 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      color: #222;
+    }
+    .toolbar-viewby {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toolbar-viewby button {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 1.1rem;
+      color: #222;
+      cursor: pointer;
+      transition: border 0.2s, color 0.2s;
+    }
+    .toolbar-viewby button.active, .toolbar-viewby button:hover {
+      border: 2px solid #2c3e50;
+      color: #2c3e50;
+    }
+    .product-count {
+      color: #888;
+      font-size: 1rem;
+      margin-left: 18px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px 24px;
+      padding: 40px 32px 60px 32px;
+      background: #fff;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s;
+      position: relative;
+    }
+    .product-card:hover {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    }
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #f7f7f7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    .product-swatches {
+      display: flex;
+      gap: 8px;
+      margin: 14px 0 8px 0;
+      justify-content: center;
+    }
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid #ccc;
+      background: #eee;
+      display: inline-block;
+    }
+    .swatch.pink { background: #eeb1b1; }
+    .swatch.green { background: #b6cfa6; }
+    .swatch.natural { background: #e7d7b6; }
+    .swatch.oat { background: #f3ede7; }
+    .swatch.brown { background: #bfa07a; }
+    .swatch.black { background: #222; }
+    .product-badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .badge {
+      font-size: 0.82rem;
+      color: #fff;
+      background: #222;
+      border-radius: 12px;
+      padding: 2px 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .badge.new { background: #2c3e50; }
+    .badge.exclusive { background: #bfa07a; }
+    .product-name {
+      font-size: 1.08rem;
+      color: #222;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      text-align: center;
+    }
+    .product-price {
+      font-size: 1.08rem;
+      color: #2c3e50;
+      font-weight: 500;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    @media (max-width: 1200px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 12px;
+        padding: 30px 10px 40px 10px;
+      }
+      .product-toolbar {
+        padding: 18px 10px 0 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 18px 0;
+        padding: 18px 2px 24px 2px;
+      }
+      .product-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="product-toolbar">
+    <div class="toolbar-left">
+      <span class="toolbar-label"><svg width="20" height="20" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg> FILTER</span>
+      <span class="toolbar-label">SORT BY:</span>
+      <select class="toolbar-select">
+        <option>Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+      </select>
+    </div>
+    <div class="toolbar-right">
+      <span class="product-count">Showing 1 - 4 of 4 item(s)</span>
+      <div class="toolbar-viewby">
+        <button class="active">3</button>
+        <button>4</button>
+        <button>6</button>
+      </div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <!-- Product Card 1 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/400x400?text=Product+1" alt="Shalia Raffia Basket Bag - Guava Pink">
+      </div>
+      <div class="product-swatches">
+        <span class="swatch pink"></span>
+        <span class="swatch green"></span>
+        <span class="swatch natural"></span>
+      </div>
+      <div class="product-badges">
+        <span class="badge exclusive">New Online Exclusive</span>
+      </div>
+      <div class="product-name">Shalia Raffia Basket Bag - Guava Pink</div>
+      <div class="product-price">RM479.90</div>
+    </div>
+    <!-- Product Card 2 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/400x400?text=Product+2" alt="Shalia Raffia Basket Bag - Matcha Green">
+      </div>
+      <div class="product-swatches">
+        <span class="swatch pink"></span>
+        <span class="swatch green"></span>
+        <span class="swatch natural"></span>
+      </div>
+      <div class="product-badges">
+        <span class="badge new">New</span>
+      </div>
+      <div class="product-name">Shalia Raffia Basket Bag - Matcha Green</div>
+      <div class="product-price">RM479.90</div>
+    </div>
+    <!-- Product Card 3 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/400x400?text=Product+3" alt="Shalia Raffia Basket Bag - Natural Raffia">
+      </div>
+      <div class="product-swatches">
+        <span class="swatch pink"></span>
+        <span class="swatch natural"></span>
+        <span class="swatch black"></span>
+      </div>
+      <div class="product-badges">
+        <span class="badge new">New</span>
+      </div>
+      <div class="product-name">Shalia Raffia Basket Bag - Natural Raffia</div>
+      <div class="product-price">RM479.90</div>
+    </div>
+    <!-- Product Card 4 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://via.placeholder.com/400x400?text=Product+4" alt="Calla Tote Bag - Oat">
+      </div>
+      <div class="product-swatches">
+        <span class="swatch oat"></span>
+        <span class="swatch brown"></span>
+        <span class="swatch black"></span>
+      </div>
+      <div class="product-badges">
+        <span class="badge exclusive">Online Exclusive</span>
+      </div>
+      <div class="product-name">Calla Tote Bag - Oat</div>
+      <div class="product-price">RM399.90</div>
+    </div>
+  </div>
+</body>
+</html>

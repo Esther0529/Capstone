@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton Racket Bags</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #fafafa; }
+        .product-grid { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin: 40px auto; max-width: 1200px; }
+        .product-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); width: 260px; padding: 18px 18px 24px 18px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.2s; }
+        .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.13); }
+        .product-card img { width: 180px; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 18px; }
+        .product-card .product-title { font-size: 1.1rem; font-weight: 600; color: #222; margin-bottom: 6px; text-align: center; }
+        .product-card .product-price { font-size: 1.1rem; color: #1976d2; font-weight: 500; margin-bottom: 10px; }
+        .view-details-btn { background: #222; color: #fff; border: none; border-radius: 7px; padding: 10px 0; width: 100%; font-size: 1rem; font-weight: 500; cursor: pointer; margin-top: 8px; transition: background 0.2s; }
+        .view-details-btn:hover { background: #444; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 40px 12px 40px;background:#fff;border-bottom:1px solid #eee;">
+            <a href="Home.html" style="font-size:1.7rem;font-weight:700;letter-spacing:2px;color:#222;text-decoration:none;">Kulai Sport</a>
+            <nav style="display:flex;gap:32px;align-items:center;">
+                <a href="bags-racket.html" style="color:#222;text-decoration:none;font-weight:500;">Bags</a>
+                <a href="product.html" style="color:#222;text-decoration:none;font-weight:500;">Shop All</a>
+                <a href="cart.html" style="color:#222;font-size:1.3rem;margin-left:18px;">&#128722;</a>
+                <a href="wishlist.html" style="color:#222;font-size:1.3rem;margin-left:8px;">&#9825;</a>
+                <a href="Userprofile.html" style="color:#222;font-size:1.3rem;margin-left:8px;">&#128100;</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2 style="text-align:center;font-size:2rem;font-weight:700;margin:40px 0 24px 0;color:#222;">Badminton Racket Bags</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <a href="bags-racket-detail.html" style="text-decoration:none;color:inherit;width:100%;display:flex;flex-direction:column;align-items:center;">
+                    <img src="Image/bags/racketbag1a.jpg" alt="Tournament Racket Bag">
+                    <div class="product-title">Tournament Racket Bag</div>
+                    <div class="product-price">RM229.00</div>
+                </a>
+                <a href="bags-racket-detail.html" class="view-details-btn">View Details</a>
+            </div>
+        </div>
+    </main>
+    <footer style="margin-top:40px;">
+        <div style="background:#222;color:#fff;padding:32px 0;text-align:center;font-size:1rem;">
+            &copy; 2024 Kulai Sport. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kulai Sport</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    .brand-banners {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 60vh;
+      position: relative;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .banner-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .banner-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8);
+      display: block;
+    }
+
+    .banner-content {
+      position: absolute;
+      bottom: 10%;
+      left: 10%;
+      color: white;
+      text-align: left;
+      max-width: 400px;
+    }
+
+    .banner-content h3 {
+      font-size: 2rem;
+      margin: 0;
+      font-weight: 300;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .banner-content p {
+      font-size: 1rem;
+      margin: 0.8rem 0;
+      font-weight: 300;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .banner-content button {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 10px 25px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .banner-content button:hover {
+      background: white;
+      color: black;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+      font-size: 1rem;
+    }
+
+    .swiper-pagination {
+      z-index: 10;
+    }
+
+    .swiper-pagination-bullet {
+      background: white;
+      opacity: 0.5;
+      width: 8px;
+      height: 8px;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: white;
+    }
+
+    /* Ensure the slider is visible on mobile */
+    @media (max-width: 768px) {
+      .swiper {
+        height: 45vh;
+      }
+
+      .banner-content h3 {
+        font-size: 1.5rem;
+      }
+
+      .banner-content p {
+        font-size: 0.9rem;
+      }
+
+      .banner-content button {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Product Grid Styles */
+    .product-grid {
+      padding: 40px 20px;
+      background-color: #f8f8f8;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: #2c3e50;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      font-size: 1.2rem;
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .product-category {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      padding: 10px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background-color: #34495e;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .product-card img {
+        height: 200px;
+      }
+
+      .product-info h3 {
+        font-size: 1.1rem;
+      }
+
+      .product-price {
+        font-size: 1.2rem;
+      }
+    }
+
+    .footer-minimal {
+      background: #fff;
+      color: #111;
+      border-top: 1px solid #eee;
+      font-family: 'Inter', Arial, sans-serif;
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+    .footer-minimal-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 20px 0 20px;
+    }
+    .footer-minimal-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+    .footer-minimal-col h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      color: #111;
+    }
+    .footer-minimal-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-minimal-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-minimal-col ul li a {
+      color: #111;
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .footer-minimal-col ul li a:hover {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+    .newsletter-col {
+      min-width: 220px;
+    }
+    .newsletter-desc {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      font-size: 1rem;
+    }
+    .newsletter-form button {
+      padding: 8px 18px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover {
+      background: #2c3e50;
+    }
+    .footer-minimal-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #eee;
+      padding: 18px 0 0 0;
+      margin-top: 10px;
+    }
+    .footer-location {
+      font-size: 0.98rem;
+      color: #111;
+    }
+    .footer-location a {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+    .footer-social-row {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .footer-social-row a {
+      color: #111;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .footer-social-row a:hover {
+      color: #2c3e50;
+    }
+    .footer-minimal-copyright {
+      text-align: center;
+      color: #888;
+      font-size: 0.95rem;
+      padding: 18px 0 10px 0;
+      border-top: 1px solid #eee;
+      margin-top: 10px;
+    }
+    .footer-signup-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 28px;
+      background: #2c3e50;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .footer-signup-btn:hover {
+      background: #34495e;
+    }
+    @media (max-width: 900px) {
+      .footer-minimal-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+      .footer-minimal-content {
+        padding: 30px 10px 0 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-minimal-columns {
+        grid-template-columns: 1fr;
+      }
+      .footer-minimal-bottom {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+    }
+
+    .product-slider-section {
+      margin: 40px 0;
+      background: #fff;
+    }
+    .slider-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 24px 24px;
+    }
+    .product-swiper {
+      padding: 0 24px 40px 24px;
+    }
+    .product-swiper .swiper-slide {
+      background: #f7f7f7;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 340px;
+    }
+    .product-swiper .swiper-slide img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: #222;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @media (max-width: 900px) {
+      .product-swiper .swiper-slide {
+        height: 220px;
+      }
+    }
+    @media (max-width: 600px) {
+      .slider-title {
+        font-size: 1.3rem;
+        margin-left: 10px;
+      }
+      .product-swiper {
+        padding: 0 6px 24px 6px;
+      }
+      .product-swiper .swiper-slide {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">KULAI SPORT</div>
+    <div class="toolbar">
+      <div class="nav-row">
+        <div class="search-container">
+          <svg class="icon search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          
+          <div class="search-input-container">
+            <input type="text" class="search-input" placeholder="Search products...">
+            <span class="close-search">&times;</span>
+          </div>
+          
+          <div class="search-results"></div>
+        </div>
+        <button id="shop-btn" class="dropdown-btn">SHOP</button>
+        <a href="product.html">NEW IN</a>
+        <a href="product.html" class="highlighted">TRENDING NOW</a>
+      </div>
+      <div class="icon-row">
+        <a href="notification.html">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </a>
+        <a href="wishlist.html">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 
+                     5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 
+                     1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </a>
+        <a href="cart.html">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </a>
+        <a href="Userprofile.html">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M4 21v-2a4 4 0 0 1 3-3.87"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+  <section class="brand-banners">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <!-- Brand Rackets Section -->
+        <div class="swiper-slide">
+          <a href="brand-yonex.html" class="banner-card">
+            <img src="Image/Yonex Image.webp" alt="Yonex Astrox">
+            <div class="banner-content">
+              <h3>YONEX ASTROX</h3>
+              <p>Professional Badminton Rackets</p>
+              <button>Shop Collection →</button>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="brand-victor.html" class="banner-card">
+            <img src="Image/Victor.jpg" alt="Victor Thruster">
+            <div class="banner-content">
+              <h3>VICTOR THRUSTER</h3>
+              <p>Elite Performance Series</p>
+              <button>View Series →</button>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="brand-lining.html" class="banner-card">
+            <img src="Image/Lining.webp" alt="Li-Ning Windstorm">
+            <div class="banner-content">
+              <h3>LI-NING WINDSTORM</h3>
+              <p>Professional Badminton Equipment</p>
+              <button>Explore Now →</button>
+            </div>
+          </a>
+        </div>
+
+        <!-- Footwear Section -->
+        <div class="swiper-slide">
+          <a href="shoes-men.html" class="banner-card">
+            <img src="Image/Yonex shoes image.jpg" alt="Yonex Shoes">
+            <div class="banner-content">
+              <h3>YONEX SHOES</h3>
+              <p>Professional Court Footwear</p>
+              <button>Discover More →</button>
+            </div>
+          </a>
+        </div>
+
+        <!-- Accessories Section -->
+        <div class="swiper-slide">
+          <a href="gear-shuttlecocks.html" class="banner-card">
+            <img src="Image/Shuttlecocks.jpg" alt="Shuttlecocks">
+            <div class="banner-content">
+              <h3>SHUTTLECOCKS</h3>
+              <p>Premium Quality Feather & Synthetic</p>
+              <button>Shop Now →</button>
+            </div>
+          </a>
+        </div>
+
+        <!-- Apparel Section -->
+        <div class="swiper-slide">
+          <a href="apparel-men.html" class="banner-card">
+            <img src="Image/apparel.jpg" alt="Badminton Apparel">
+            <div class="banner-content">
+              <h3>BADMINTON APPAREL</h3>
+              <p>Professional Sportswear</p>
+              <button>View Collection →</button>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <!-- Product Category Slider Section -->
+  <section class="product-slider-section">
+    <h2 class="slider-title">Most-Wanted Rackets</h2>
+    <div class="swiper product-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="Image/Yonex Image.webp" alt="Yonex Astrox 100 ZZ" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Image/Victor.jpg" alt="Victor Thruster K Falcon" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Image/Lining.webp" alt="Li-Ning Windstorm 72" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Image/Yonex shoes image.jpg" alt="Yonex Eclipsion Z" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Image/Shuttlecocks.jpg" alt="Yonex Aerosensa 50" />
+        </div>
+        <div class="swiper-slide">
+          <img src="Image/apparel.jpg" alt="Yonex Pro Shirt" />
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Product Grid Section -->
+  <section class="product-grid">
+    <h2 class="section-title">You May Like</h2>
+    <div class="product-container">
+      <!-- Yonex Products -->
+      <div class="product-card">
+        <img src="Image/Yonex Image.webp" alt="Yonex Astrox 100 ZZ">
+        <div class="product-info">
+          <h3>Yonex Astrox 100 ZZ</h3>
+          <p class="product-category">Professional Racket</p>
+          <p class="product-price">RM 899.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="Image/Yonex shoes image.jpg" alt="Yonex Eclipsion Z">
+        <div class="product-info">
+          <h3>Yonex Eclipsion Z</h3>
+          <p class="product-category">Professional Shoes</p>
+          <p class="product-price">RM 499.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Victor Products -->
+      <div class="product-card">
+        <img src="Image/Victor.jpg" alt="Victor Thruster K Falcon">
+        <div class="product-info">
+          <h3>Victor Thruster K Falcon</h3>
+          <p class="product-category">Professional Racket</p>
+          <p class="product-price">RM 799.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Li-Ning Products -->
+      <div class="product-card">
+        <img src="Image/Lining.webp" alt="Li-Ning Windstorm 72">
+        <div class="product-info">
+          <h3>Li-Ning Windstorm 72</h3>
+          <p class="product-category">Professional Racket</p>
+          <p class="product-price">RM 699.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Accessories -->
+      <div class="product-card">
+        <img src="Image/Shuttlecocks.jpg" alt="Yonex Aerosensa 50">
+        <div class="product-info">
+          <h3>Yonex Aerosensa 50</h3>
+          <p class="product-category">Tournament Shuttlecocks</p>
+          <p class="product-price">RM 89.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Apparel -->
+      <div class="product-card">
+        <img src="Image/apparel.jpg" alt="Yonex Pro Shirt">
+        <div class="product-info">
+          <h3>Yonex Pro Shirt</h3>
+          <p class="product-category">Professional Wear</p>
+          <p class="product-price">RM 199.00</p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-minimal">
+    <div class="footer-minimal-content">
+      <div class="footer-minimal-columns">
+        <div class="footer-minimal-col">
+          <h4>NEED HELP?</h4>
+          <ul>
+            <li><a href="#">Check Order Status</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Shipping & Tracking</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Size Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-minimal-col">
+          <h4>ABOUT US</h4>
+          <ul>
+            <li><a href="#">Brand Profile</a></li>
+            <li><a href="#">Kulai Sport Group</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Impact Programme</a></li>
+            <li><a href="#">Affiliates</a></li>
+          </ul>
+        </div>
+        <div class="footer-minimal-col">
+          <h4>SHOPPING WITH US</h4>
+          <ul>
+            <li><a href="#">Store Locator</a></li>
+            <li><a href="#">Promotions</a></li>
+            <li><a href="#">Student Discount</a></li>
+          </ul>
+        </div>
+        <div class="footer-minimal-col">
+          <h4>LEGAL</h4>
+          <ul>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookies Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-minimal-col newsletter-col">
+          <h4>ENJOY 10% OFF YOUR FIRST PURCHASE</h4>
+          <p class="newsletter-desc">When you subscribe to our newsletter and create an account.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for signing up!');">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">SIGN UP</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-minimal-bottom">
+        <div class="footer-location">LOCATION: <a href="#">Malaysia, RM</a></div>
+        <div class="footer-social-row">
+          <a href="#" aria-label="Facebook"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22.54 6.42A2.78 2.78 0 0 0 20.6 4.48C19.06 4 12 4 12 4s-7.06 0-8.6.48A2.78 2.78 0 0 0 1.46 6.42 29.94 29.94 0 0 0 1 12a29.94 29.94 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 1.94C4.94 20 12 20 12 20s7.06 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94A29.94 29.94 0 0 0 23 12a29.94 29.94 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.72 20.11c-.09-.77-.17-1.96.04-2.8.18-.73 1.16-4.64 1.16-4.64s-.29-.58-.29-1.44c0-1.35.78-2.36 1.75-2.36.82 0 1.22.62 1.22 1.36 0 .83-.53 2.07-.8 3.22-.23.97.48 1.76 1.43 1.76 1.72 0 3.04-1.81 3.04-4.42 0-2.31-1.66-3.93-4.04-3.93-2.75 0-4.36 2.06-4.36 4.19 0 .83.32 1.72.72 2.2.08.1.09.19.07.29-.08.32-.25 1.01-.28 1.15-.04.18-.14.22-.33.13-1.23-.57-1.99-2.36-1.99-3.8 0-3.1 2.25-5.95 6.48-5.95 3.4 0 6.04 2.42 6.04 5.65 0 3.37-2.13 6.08-5.09 6.08-1.02 0-1.98-.53-2.31-1.13l-.63 2.41c-.19.73-.56 1.65-.83 2.21.62.19 1.27.29 1.95.29 5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12c0 4.42 3.58 8 8 8 .68 0 1.33-.1 1.95-.29z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-minimal-copyright">
+        <span>&copy; 2024 Kulai Sport, all rights reserved.</span>
+        <a href="ChooseLogin.html" class="footer-signup-btn">Sign Up</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="overlay" class="overlay"></div>
+
+  <div id="sidebar" class="sidebar">
+    <button id="close-btn" class="close-btn">&times;</button>
+    <ul>
+      <li><a href="#" class="sidebar-link" data-submenu="brands">Top Brands <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-brands" class="submenu">
+        <a href="brand-yonex.html">Yonex</a>
+        <a href="brand-victor.html">Victor</a>
+        <a href="brand-lining.html">Li-Ning</a>
+      </div>
+
+      <li><a href="#" class="sidebar-link" data-submenu="rackets">Racket Collections <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-rackets" class="submenu">
+        <a href="racket-beginner.html">Beginner Sets</a>
+        <a href="racket-advanced.html">Advanced Players</a>
+        <a href="racket-pro.html">Professional Grade</a>
+      </div>
+
+      <li><a href="#" class="sidebar-link" data-submenu="footwear">Shoes & Footwear <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-footwear" class="submenu">
+        <a href="shoes-men.html">Men's Court Shoes</a>
+        <a href="shoes-women.html">Women's Court Shoes</a>
+      </div>
+
+      <li><a href="#" class="sidebar-link" data-submenu="gear">Essential Gear <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-gear" class="submenu">
+        <a href="gear-shuttlecocks.html">Shuttlecocks</a>
+        <a href="gear-grip.html">Grips & Strings</a>
+        <a href="gear-string.html">Support Braces</a>
+      </div>
+
+      <li><a href="#" class="sidebar-link" data-submenu="apparel">Apparel <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-apparel" class="submenu">
+        <a href="apparel-men.html">Men's Wear</a>
+        <a href="apparel-women.html">Women's Wear</a>
+        <a href="apparel-kids.html">Kids' Sets</a>
+      </div>
+
+      <li><a href="#" class="sidebar-link" data-submenu="bags">Bags <span class="arrow">&rsaquo;</span></a></li>
+      <div id="submenu-bags" class="submenu">
+        <a href="bags-racket.html">Racket Bags</a>
+        <a href="bags-backpack.html">Backpacks</a>
+      </div>
+    </ul>
+    <div class="sidebar-footer">
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      slidesPerView: 1,
+      spaceBetween: 0,
+      centeredSlides: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+
+    const shopBtn = document.getElementById('shop-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+    const searchIcon = document.querySelector('.search-icon');
+    const searchContainer = document.querySelector('.search-input-container');
+    const closeSearch = document.querySelector('.close-search');
+    const searchInput = document.querySelector('.search-input');
+    const searchResults = document.querySelector('.search-results');
+
+    const products = [
+      { name: "Yonex Badminton Racket", category: "Rackets", url: "product.html" },
+      { name: "Victor Shoes", category: "Footwear", url: "product.html" },
+      { name: "Li-Ning T-Shirt", category: "Apparel", url: "product.html" },
+      { name: "Badminton Shuttlecocks", category: "Accessories", url: "product.html" },
+      { name: "Yonex Arcsaber 11", category: "Professional Rackets", url: "product.html" },
+      { name: "Victor Thruster K Falcon", category: "Advanced Rackets", url: "product.html" },
+      { name: "Li-Ning Windstorm 72", category: "Beginner Rackets", url: "product.html" }
+    ];
+
+    shopBtn.addEventListener('click', () => {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+
+      document.querySelectorAll('.submenu').forEach(menu => {
+        menu.classList.remove('open');
+      });
+
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+      });
+    });
+
+
+    overlay.addEventListener('click', () => {
+      closeBtn.click();
+    });
+
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const submenuId = link.getAttribute('data-submenu');
+        const submenu = document.getElementById(`submenu-${submenuId}`);
+
+        submenu.classList.toggle('open');
+        link.classList.toggle('active');
+      });
+    });
+
+    searchIcon.addEventListener('click', function(e) {
+      e.stopPropagation();
+      searchContainer.classList.add('active');
+      searchInput.focus();
+    });
+
+    closeSearch.addEventListener('click', function() {
+      searchContainer.classList.remove('active');
+      searchResults.classList.remove('active');
+      searchInput.value = '';
+    });
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      searchResults.innerHTML = '';
+
+      if (searchTerm.length > 0) {
+        const filteredProducts = products.filter(product => 
+          product.name.toLowerCase().includes(searchTerm) || 
+          product.category.toLowerCase().includes(searchTerm)
+        );
+
+        if (filteredProducts.length > 0) {
+          filteredProducts.forEach(product => {
+            const item = document.createElement('div');
+            item.className = 'search-result-item';
+
+            const highlightedName = highlightMatch(product.name, searchTerm);
+            const highlightedCategory = highlightMatch(product.category, searchTerm);
+            
+            item.innerHTML = `
+              <div>${highlightedName}</div>
+              <div class="search-result-category">${highlightedCategory}</div>
+            `;
+            item.addEventListener('click', function() {
+              window.location.href = product.url;
+            });
+            searchResults.appendChild(item);
+          });
+          searchResults.classList.add('active');
+        } else {
+          searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
+          searchResults.classList.add('active');
+        }
+      } else {
+        searchResults.classList.remove('active');
+      }
+    });
+
+    function highlightMatch(text, term) {
+      if (!term) return text;
+      const regex = new RegExp(term, 'gi');
+      return text.replace(regex, match => 
+        `<span class="search-result-highlight">${match}</span>`
+      );
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.search-container')) {
+        searchContainer.classList.remove('active');
+        searchResults.classList.remove('active');
+      }
+    });
+
+    // Handle Enter key in search
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const searchTerm = this.value.trim();
+        if (searchTerm) {
+          // Implement your search action here
+          console.log('Searching for:', searchTerm);
+        }
+      }
+    });
+
+    // Add to Cart functionality
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const productCard = this.closest('.product-card');
+        const productName = productCard.querySelector('h3').textContent;
+        alert(`${productName} added to cart!`);
+      });
+    });
+
+    var productSwiper = new Swiper('.product-swiper', {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: '.product-swiper .swiper-button-next',
+        prevEl: '.product-swiper .swiper-button-prev',
+      },
+      breakpoints: {
+        1200: { slidesPerView: 4 },
+        900: { slidesPerView: 3 },
+        600: { slidesPerView: 2 },
+        0: { slidesPerView: 1 }
+      }
+    });
+  </script>
+</body>
+</html>

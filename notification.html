@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - Kulai Sport</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .notif-container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      padding: 32px 24px 24px 24px;
+    }
+    .notif-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .notif-back {
+      background: none;
+      border: none;
+      font-size: 1.7rem;
+      color: #2c3e50;
+      cursor: pointer;
+      margin-right: 12px;
+    }
+    .notif-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin: 0;
+    }
+    .notif-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+    .notif-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eaf1fb;
+      border-radius: 50%;
+      color: #2c3e50;
+      font-size: 1.3rem;
+    }
+    .notif-content {
+      flex: 1;
+    }
+    .notif-title-msg {
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      color: #222;
+      font-size: 1.05rem;
+    }
+    .notif-msg {
+      margin: 0 0 6px 0;
+      color: #555;
+      font-size: 0.98rem;
+    }
+    .notif-time {
+      color: #888;
+      font-size: 0.92rem;
+    }
+    @media (max-width: 600px) {
+      .notif-container {
+        max-width: 100vw;
+        border-radius: 0;
+        padding: 18px 6px 12px 6px;
+      }
+      .notif-header {
+        margin-bottom: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="notif-container">
+    <div class="notif-header">
+      <button class="notif-back" onclick="window.history.back()">&larr;</button>
+      <span class="notif-title">Notifications</span>
+    </div>
+    <ul class="notif-list">
+      <li class="notif-item">
+        <span class="notif-icon">🔔</span>
+        <div class="notif-content">
+          <div class="notif-title-msg">Order Shipped</div>
+          <div class="notif-msg">Your order #12345 has been shipped and is on its way!</div>
+          <div class="notif-time">2 hours ago</div>
+        </div>
+      </li>
+      <li class="notif-item">
+        <span class="notif-icon">🎁</span>
+        <div class="notif-content">
+          <div class="notif-title-msg">Special Offer</div>
+          <div class="notif-msg">Enjoy 10% off your next purchase. Use code: WELCOME10</div>
+          <div class="notif-time">Yesterday</div>
+        </div>
+      </li>
+      <li class="notif-item">
+        <span class="notif-icon">✅</span>
+        <div class="notif-content">
+          <div class="notif-title-msg">Account Verified</div>
+          <div class="notif-msg">Your email has been successfully verified. Thank you!</div>
+          <div class="notif-time">2 days ago</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Kulai Sport</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: 'Inter', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 370px;
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: #333;
+      font-size: 1rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      background: #fafafa;
+    }
+    .show-password {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .login-btn:hover {
+      background: #34495e;
+    }
+    .switch-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #2c3e50;
+      text-decoration: none;
+      font-size: 0.98rem;
+    }
+    .switch-link:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.97rem;
+      margin-bottom: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Admin Login</h2>
+    <form id="admin-login-form" autocomplete="off">
+      <div class="error-message" id="login-error">Invalid email or password.</div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <div class="show-password">
+          <input type="checkbox" id="show-password" onclick="togglePassword()">
+          <label for="show-password" style="margin-left:6px;cursor:pointer;">Show Password</label>
+        </div>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <a href="Adminsignup.html" class="switch-link">Don't have an admin account? Sign up</a>
+  </div>
+  <script>
+    function togglePassword() {
+      var pwd = document.getElementById('password');
+      pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    }
+    document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Demo only: always show error
+      document.getElementById('login-error').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

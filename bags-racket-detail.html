@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton Racket Bag Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #fafafa; }
+        .product-detail-container { display: flex; max-width: 1100px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); overflow: hidden; }
+        .gallery-column { width: 90px; background: #f5f5f5; display: flex; flex-direction: column; align-items: center; padding: 24px 0; gap: 12px; }
+        .gallery-column img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: border 0.2s; }
+        .gallery-column img.selected { border: 2px solid #222; }
+        .main-image { flex: 1; display: flex; align-items: center; justify-content: center; background: #f5f5f5; }
+        .main-image img { max-width: 400px; max-height: 400px; border-radius: 12px; }
+        .product-info { flex: 1.2; padding: 40px 36px 36px 36px; display: flex; flex-direction: column; gap: 18px; }
+        .product-title { font-size: 2rem; font-weight: 600; margin-bottom: 0.2em; }
+        .product-price { font-size: 1.5rem; color: #1a1a1a; font-weight: 500; }
+        .product-meta { color: #888; font-size: 1rem; margin-bottom: 0.5em; }
+        .color-options { display: flex; gap: 10px; align-items: center; }
+        .color-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #ddd; cursor: pointer; display: inline-block; }
+        .color-dot.selected { border: 2px solid #222; }
+        .stock-status { color: #2e7d32; font-size: 1rem; font-weight: 500; margin-left: 10px; }
+        .add-to-cart-btn { background: #222; color: #fff; border: none; border-radius: 8px; padding: 16px 0; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background 0.2s; }
+        .add-to-cart-btn:hover { background: #444; }
+        .wishlist-btn { background: none; border: none; color: #d32f2f; font-size: 1.3rem; cursor: pointer; margin-left: 10px; vertical-align: middle; }
+        .product-section { margin-top: 18px; }
+        .product-section h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+        .product-section p { color: #444; font-size: 1rem; line-height: 1.6; }
+        @media (max-width: 900px) { .product-detail-container { flex-direction: column; } .gallery-column { flex-direction: row; width: 100%; padding: 12px 0; } .main-image { justify-content: flex-start; } .product-info { padding: 24px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 40px 12px 40px;background:#fff;border-bottom:1px solid #eee;">
+            <a href="Home.html" style="font-size:1.7rem;font-weight:700;letter-spacing:2px;color:#222;text-decoration:none;">Kulai Sport</a>
+            <nav style="display:flex;gap:32px;align-items:center;">
+                <a href="bags-racket.html" style="color:#222;text-decoration:none;font-weight:500;">Bags</a>
+                <a href="product.html" style="color:#222;text-decoration:none;font-weight:500;">Shop All</a>
+                <a href="cart.html" style="color:#222;font-size:1.3rem;margin-left:18px;">&#128722;</a>
+                <a href="wishlist.html" style="color:#222;font-size:1.3rem;margin-left:8px;">&#9825;</a>
+                <a href="Userprofile.html" style="color:#222;font-size:1.3rem;margin-left:8px;">&#128100;</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="product-detail-container">
+            <div class="gallery-column">
+                <img src="Image/bags/racketbag1a.jpg" alt="Racket Bag Side" class="selected" onclick="setMainImage('Image/bags/racketbag1a.jpg', this)">
+                <img src="Image/bags/racketbag1b.jpg" alt="Racket Bag Angle" onclick="setMainImage('Image/bags/racketbag1b.jpg', this)">
+                <img src="Image/bags/racketbag1c.jpg" alt="Racket Bag Detail" onclick="setMainImage('Image/bags/racketbag1c.jpg', this)">
+            </div>
+            <div class="main-image">
+                <img id="mainProductImage" src="Image/bags/racketbag1a.jpg" alt="Badminton Racket Bag">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Tournament Racket Bag</div>
+                <div class="product-price">RM229.00</div>
+                <div class="product-meta">Category: Bags &gt; Racket Bag</div>
+                <div class="color-options">
+                    <span style="font-size:1rem;color:#888;">Colour:</span>
+                    <span class="color-dot selected" style="background:#e0e0e0;"></span>
+                    <span class="color-dot" style="background:#1a237e;"></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span>Size: L</span>
+                    <span class="stock-status">IN STOCK</span>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart()">ADD TO CART</button>
+                <button class="wishlist-btn" title="Add to Wishlist">&#9825;</button>
+                <div class="product-section">
+                    <h4>Product Details</h4>
+                    <p>Carry up to 6 rackets and all your essentials with this Tournament Racket Bag. Features thermal lining, shoe compartment, and ergonomic handles for easy transport.</p>
+                </div>
+                <div class="product-section">
+                    <h4>Editor's Note</h4>
+                    <p>Perfect for tournaments and training, this bag keeps your gear organized and protected.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer style="margin-top:40px;">
+        <div style="background:#222;color:#fff;padding:32px 0;text-align:center;font-size:1rem;">
+            &copy; 2024 Kulai Sport. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        function setMainImage(src, el) {
+            document.getElementById('mainProductImage').src = src;
+            document.querySelectorAll('.gallery-column img').forEach(img => img.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+        function addToCart() {
+            alert('Added to cart! (Demo only)');
+        }
+    </script>
+</body>
+</html> 
